@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../app/store";
-import ITask from "./ITask";
+import { RootState } from "../app/store";
+import ITask from "../interfaces/ITask";
 
 export interface TodolistState {
   instances: number;

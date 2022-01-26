@@ -1,13 +1,12 @@
-//import React from "react";
 import * as React from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import Button from "./Button";
+import Input from "./Input";
 import {
   selectInputValue,
   addTask,
   changeInputValue,
-} from "../todolist/todolistSlice";
+} from "../slicers/todolistSlice";
 
 const AddTodo = () => {
   const inputValue = useAppSelector(selectInputValue);
@@ -21,7 +20,6 @@ const AddTodo = () => {
 
   return (
     <div>
-      {/* <h2 className="mb-10 text-3xl font-bold">Add Todo</h2> */}
       <form onSubmit={onSubmit}>
         <div className="flex">
           <Input type={"text"} placeholder={"Enter task here..."} />

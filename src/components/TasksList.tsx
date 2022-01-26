@@ -1,9 +1,8 @@
-import React from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../app/hooks";
 import Task from "./Task";
-import { selectTasks } from "./todolistSlice";
+import { selectTasks } from "../slicers/todolistSlice";
 
-const Taskslist = () => {
+const TasksList = () => {
   const tasks = useAppSelector(selectTasks);
 
   return (
@@ -16,4 +15,4 @@ const Taskslist = () => {
   );
 };
 
-export default Taskslist;
+export default TasksList;

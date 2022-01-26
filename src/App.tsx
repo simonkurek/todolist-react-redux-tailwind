@@ -1,18 +1,15 @@
 import "./App.css";
-import AddTodo from "./features/addTodo/AddTodo";
-import Header from "./features/header/Header";
-import Taskslist from "./features/todolist/Taskslist";
-// import AddTask from "./Components/AddTask";
+import AddTodo from "./components/AddTodo";
+import TasksList from "./components/TasksList";
 
 const App = () => {
   return (
     <div className="App">
-      <Header />
+      <h1 className="font-bold text-6xl mb-20">To-Do List</h1>
       <AddTodo />
-      <Taskslist />
+      <TasksList />
     </div>
   );
-  // </TaskList>
 };
 
 export default App;
