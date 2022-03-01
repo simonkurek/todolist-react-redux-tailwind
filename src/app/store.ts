@@ -1,11 +1,12 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-// import counterReducer from "../features/counter/counterSlice";
+import thunk from "redux-thunk";
 import todolistReducer from "../slicers/todolistSlice";
 
 export const store = configureStore({
   reducer: {
     todolist: todolistReducer,
   },
+  middleware: [thunk],
 });
 
 export type AppDispatch = typeof store.dispatch;

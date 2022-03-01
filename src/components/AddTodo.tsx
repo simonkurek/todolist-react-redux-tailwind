@@ -7,6 +7,7 @@ import {
   addTask,
   changeInputValue,
 } from "../slicers/todolistSlice";
+import ApiClient from "../client/api";
 
 const AddTodo = () => {
   const inputValue = useAppSelector(selectInputValue);
@@ -14,6 +15,13 @@ const AddTodo = () => {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const apiClient = new ApiClient({
+      protocol: "http",
+      host: "localhost",
+      port: 13000,
+    });
+
+    apiClient.createTask(inputValue);
     dispatch(addTask(inputValue));
     dispatch(changeInputValue(""));
   };

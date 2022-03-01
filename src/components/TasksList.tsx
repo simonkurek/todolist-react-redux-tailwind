@@ -1,9 +1,25 @@
-import { useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Task from "./Task";
-import { selectTasks } from "../slicers/todolistSlice";
+import { selectTasks, setTasks } from "../slicers/todolistSlice";
+import { useEffect } from "react";
+import ApiClient from "../client/api";
 
 const TasksList = () => {
   const tasks = useAppSelector(selectTasks);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const apiClient = new ApiClient({
+      protocol: "http",
+      host: "localhost",
+      port: 13000,
+    });
+
+    apiClient.getAll().then((tasks) => {
+      console.log(tasks);
+      dispatch(setTasks(tasks));
+    });
+  }, [dispatch]);
 
   return (
     <div>

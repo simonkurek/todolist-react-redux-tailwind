@@ -1,5 +1,7 @@
-import React from "react";
+import { Modal, useMantineTheme } from "@mantine/core";
+import React, { useState } from "react";
 import { useAppDispatch } from "../app/hooks";
+import ApiClient from "../client/api";
 import { removeTask } from "../slicers/todolistSlice";
 
 type Props = {
@@ -9,7 +11,15 @@ type Props = {
 
 const Task = ({ id, text }: Props) => {
   const dispatch = useAppDispatch();
+
   const handleDelete = () => {
+    const apiClient = new ApiClient({
+      protocol: "http",
+      host: "localhost",
+      port: 13000,
+    });
+
+    apiClient.deleteTask(id);
     dispatch(removeTask(id));
   };
 

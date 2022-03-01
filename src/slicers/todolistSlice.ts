@@ -3,13 +3,11 @@ import { RootState } from "../app/store";
 import ITask from "../interfaces/ITask";
 
 export interface TodolistState {
-  instances: number;
   inputValue: string;
   tasks: ITask[];
 }
 
 const initialState: TodolistState = {
-  instances: 0,
   inputValue: "",
   tasks: [],
 };
@@ -18,13 +16,16 @@ export const todolistSlice = createSlice({
   name: "todolist",
   initialState,
   reducers: {
+    setTasks: (state, action: PayloadAction<ITask[]>) => {
+      state.tasks = action.payload;
+    },
     addTask: (state, action: PayloadAction<string>) => {
       if (action.payload.length > 0) {
-        const task: ITask = {
-          id: state.instances++,
+        state.tasks.push({
+          id: state.tasks.length,
           text: action.payload,
-        };
-        state.tasks.push(task);
+          isCompleted: false,
+        });
       }
     },
     removeTask: (state, action: PayloadAction<number>) => {
@@ -36,7 +37,8 @@ export const todolistSlice = createSlice({
   },
 });
 
-export const { addTask, removeTask, changeInputValue } = todolistSlice.actions;
+export const { setTasks, addTask, removeTask, changeInputValue } =
+  todolistSlice.actions;
 
 export const selectTasks = (state: RootState) => state.todolist.tasks;
 
