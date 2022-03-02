@@ -58,13 +58,12 @@ export default class ApiClient {
     });
   }
 
-  async updateTaskIsCompleted(id: number, isCompleted: boolean): Promise<void> {
-    await fetch(this.apiUrl + "/task/changeTaskStatus/ " + id, {
+  async updateTaskIsCompleted(id: number): Promise<void> {
+    await fetch(this.apiUrl + `/task/changeTaskStatus/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ isCompleted }),
     });
   }
 

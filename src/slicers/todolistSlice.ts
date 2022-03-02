@@ -34,11 +34,24 @@ export const todolistSlice = createSlice({
     changeInputValue: (state, action: PayloadAction<string>) => {
       state.inputValue = action.payload;
     },
+    changeTaskStatus: (state, action: PayloadAction<number>) => {
+      // change status if task is completed
+      // find index of completed task
+      state.tasks.map(
+        (task) =>
+          task.id === action.payload && (task.isCompleted = !task.isCompleted)
+      );
+    },
   },
 });
 
-export const { setTasks, addTask, removeTask, changeInputValue } =
-  todolistSlice.actions;
+export const {
+  setTasks,
+  addTask,
+  removeTask,
+  changeInputValue,
+  changeTaskStatus,
+} = todolistSlice.actions;
 
 export const selectTasks = (state: RootState) => state.todolist.tasks;
 
